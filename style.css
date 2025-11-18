@@ -1,0 +1,134 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #CED0CE;
+}
+.checkbox-themed {
+    accent-color: #F9CE4E;
+}
+.navbar {
+    background-color: #33545B;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.job-card {
+    background-color: #33545B;
+    color: #d3d3d3;
+}
+.job-card h3 {
+    color: white;
+}
+.apply-btn {
+    background-color: #F9CE4E;
+    color: #333;
+}
+.apply-btn:hover {
+    background-color: #e6b93d;
+}
+.mobile-menu-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 900;
+}
+.mobile-menu-content.active {
+    max-height: 100vh;
+    transition: max-height 0.5s ease-in;
+}
+.search-input {
+    transition: all 0.3s ease;
+}
+.search-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(249, 206, 78, 0.5);
+}
+.nav-link:hover {
+    color: #F9CE4E !important;
+}
+#notification-popup, #login-prompt-modal, #contact-modal, #about-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 2000;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+}
+#login-modal, #register-modal {
+    z-index: 2500;
+}
+#notification-popup.active, #login-prompt-modal.active, #contact-modal.active, #about-modal.active {
+    display: block;
+}
+#share-options {
+    display: none;
+    position: absolute;
+    background-color: #CED0CE; /* Matches page background */
+    color: #1A2E34; /* Dark teal for visibility */
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    padding: 8px;
+    z-index: 1500;
+}
+#share-options.active {
+    display: block;
+}
+footer {
+    background: linear-gradient(135deg, #33545B 0%, #1a2e34 100%);
+    color: white;
+    padding: 20px;
+}
+footer a:hover {
+    color: #F9CE4E;
+}
+.job-card .salary {
+    color: white;
+    font-weight: bold;
+}
+.job-status-open {
+    color: #4CAF50; /* Green for open */
+    font-weight: 500;
+}
+.job-status-closed {
+    color: #F44336; /* Red for closed */
+    font-weight: 500;
+}
+.small-text {
+    font-size: 0.75rem; /* Smaller font size for location and time */
+}
+.share-link i {
+    margin-right: 8px;
+}
+.share-link:hover {
+    background-color: #B8BAB8; /* Slightly darker shade for hover */
+}
+.share-link.facebook i {
+    color: #3B5998; /* Facebook blue */
+}
+.share-link.linkedin i {
+    color: #0077B5; /* LinkedIn blue */
+}
+.share-link.telegram i {
+    color: #0088CC; /* Telegram blue */
+}
+.share-link.whatsapp i {
+    color: #25D366; /* WhatsApp green */
+}
+.share-link.twitter i {
+    color: #1DA1F2; /* Twitter blue */
+}
+.share-link.copy i {
+    color: #F9CE4E; /* JobQuest yellow for Copy URL */
+}
+@media (max-width: 768px) {
+    .desktop-menu {
+        display: none;
+    }
+}
