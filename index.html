@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobQuest - Find Your Dream Job</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="text-gray-800">
+    <nav class="navbar shadow-md p-2 flex items-center justify-between">
+        <div class="text-2xl font-bold text-white flex items-center">
+            <i class="fas fa-briefcase mr-2 text-yellow-300"></i>
+            JobQuest
+        </div>
+        <div class="desktop-menu flex items-center space-x-6">
+            <a href="#" class="nav-link text-white hover:text-gray-300">Home</a>
+            <a href="#" id="navbar-about" class="nav-link text-white hover:text-gray-300">About Us</a>
+            <input type="text" id="search-bar" placeholder="Search jobs..." class="search-input px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <button id="notification-btn" class="text-white hover:text-gray-300">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6 6 0 10-12 0v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+            </button>
+        </div>
+        <div class="desktop-menu flex space-x-4">
+            <a href="#" id="login-link" class="nav-link text-white hover:text-gray-300">Login</a>
+            <a href="#" id="register-link" class="nav-link text-white hover:text-gray-300">Register</a>
+        </div>
+        <button id="mobile-menu-toggle" class="md:hidden text-white focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
+        </button>
+    </nav>
+
+    <div id="mobile-menu-content" class="mobile-menu-content bg-[#33545B] w-full absolute">
+        <div class="p-4 space-y-4">
+            <div class="relative mb-4">
+                <input type="text" placeholder="Search jobs..." class="search-input w-full pl-10 pr-4 py-2 rounded-full border border-gray-300">
+                <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+            </div>
+            <a href="#" class="block nav-link text-white hover:bg-[#3e636b] p-3 rounded-lg transition flex items-center">
+                <i class="fas fa-home mr-3"></i> Home
+            </a>
+            <a href="#" id="mobile-about" class="block nav-link text-white hover:bg-[#3e636b] p-3 rounded-lg transition flex items-center">
+                <i class="fas fa-info-circle mr-3"></i> About Us
+            </a>
+            <a href="#" id="mobile-login-link" class="block nav-link text-white hover:bg-[#3e636b] p-3 rounded-lg transition flex items-center">
+                <i class="fas fa-sign-in-alt mr-3"></i> Login
+            </a>
+            <a href="#" id="mobile-register-link" class="block nav-link text-white hover:bg-[#3e636b] p-3 rounded-lg transition flex items-center">
+                <i class="fas fa-user-plus mr-3"></i> Register
+            </a>
+        </div>
+    </div>
+
+    <div id="notification-popup">
+        <h3 class="text-lg font-semibold text-[#33545B] mb-2">Notifications</h3>
+        <p>You have 3 new job recommendations!</p>
+        <button id="close-notification" class="mt-4 px-4 py-1 rounded-full bg-[#F9CE4E] hover:bg-[#e6b93d] text-[#333]">Close</button>
+    </div>
+
+    <div id="login-prompt-modal">
+        <h3 class="text-lg font-semibold text-[#33545B] mb-4">Login Required</h3>
+        <p class="text-sm text-gray-600 mb-4">Please log in first to apply for this job.</p>
+        <button id="go-to-login" class="px-4 py-1 rounded-full bg-[#F9CE4E] hover:bg-[#e6b93d] text-[#333] mr-2">Go to Login</button>
+        <button id="close-login-prompt" class="mt-2 text-sm text-[#33545B] hover:underline">Close</button>
+    </div>
+
+    <div id="contact-modal">
+        <h3 class="text-lg font-semibold text-[#33545B] mb-4">Contact Us</h3>
+        <form id="contact-form">
+            <input type="email" placeholder="Your Email" required class="w-full p-2 mb-3 border rounded-lg focus:ring-2 focus:ring-[#33545B]">
+            <textarea placeholder="Your Message" required class="w-full p-2 mb-3 border rounded-lg focus:ring-2 focus:ring-[#33545B]" rows="4"></textarea>
+            <button type="submit" class="w-full py-2 rounded-full bg-[#F9CE4E] hover:bg-[#e6b93d] text-[#333]">Send Message</button>
+        </form>
+        <button id="close-contact" class="mt-2 text-sm text-[#33545B] hover:underline">Close</button>
+    </div>
+
+    <div id="about-modal">
+        <h3 class="text-lg font-semibold text-[#33545B] mb-4">About Us</h3>
+        <p class="text-sm text-gray-600">JobQuest is dedicated to connecting talent with opportunities worldwide. Founded in 2025, we aim to simplify job searching with a user-friendly platform.</p>
+        <button id="close-about" class="mt-4 px-4 py-1 rounded-full bg-[#F9CE4E] hover:bg-[#e6b93d] text-[#333]">Close</button>
+    </div>
+
+    <div class="container mx-auto p-6 flex flex-col md:flex-row gap-6">
+        <div class="w-full md:w-1/4 bg-white p-6 rounded-lg shadow-md">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-semibold text-[#33545B]">Filters</h2>
+                <button id="clear-filters" class="text-sm text-[#33545B] hover:underline">Clear All</button>
+            </div>
+            <div class="mb-6">
+                <h3 class="font-bold text-gray-700 mb-2">Job Type</h3>
+                <label class="block"><input type="checkbox" class="checkbox-themed mr-2" name="job-type" value="Full-Time"> Full-Time</label>
+                <label class="block"><input type="checkbox" class="checkbox-themed mr-2" name="job-type" value="Part-Time"> Part-Time</label>
+                <label class="block"><input type="checkbox" class="checkbox-themed mr-2" name="job-type" value="Contract"> Contract</label>
+            </div>
+            <div class="mb-6">
+                <h3 class="font-bold text-gray-700 mb-2">Location</h3>
+                <select id="location" class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-[#33545B]">
+                    <option value="">All</option>
+                    <option value="New York">New York</option>
+                    <option value="London">London</option>
+                    <option value="Remote">Remote</option>
+                </select>
+            </div>
+            <div class="mb-6">
+                <h3 class="font-bold text-gray-700 mb-2">Experience Level</h3>
+                <label class="block"><input type="checkbox" class="checkbox-themed mr-2" name="experience" value="Entry"> Entry</label>
+                <label class="block"><input type="checkbox" class="checkbox-themed mr-2" name="experience" value="Mid"> Mid</label>
+                <label class="block"><input type="checkbox" class="checkbox-themed mr-2" name="experience" value="Senior"> Senior</label>
+            </div>
+            <div class="mb-6">
+                <h3 class="font-bold text-gray-700 mb-2">Job Category</h3>
+                <label class="block"><input type="checkbox" class="checkbox-themed mr-2" name="category" value="Tech"> Tech</label>
+                <label class="block"><input type="checkbox" class="checkbox-themed mr-2" name="category" value="Marketing"> Marketing</label>
+                <label class="block"><input type="checkbox" class="checkbox-themed mr-2" name="category" value="Design"> Design</label>
+            </div>
+            <div class="mb-6">
+                <h3 class="font-bold text-gray-700 mb-2">Salary Range (Monthly)</h3>
+                <label class="block"><input type="radio" name="salary" value="5000" class="mr-2"> Up to $5,000</label>
+                <label class="block"><input type="radio" name="salary" value="10000" class="mr-2"> Up to $10,000</label>
+                <label class="block"><input type="radio" name="salary" value="15000" class="mr-2"> Up to $15,000</label>
+                <label class="block"><input type="radio" name="salary" value="999999" class="mr-2" checked> Any</label>
+            </div>
+        </div>
+
+        <div class="w-full md:w-3/4">
+            <div id="job-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            <div id="no-results" class="hidden text-center text-gray-500 mt-6">No results found</div>
+        </div>
+    </div>
+
+    <div id="login-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+        <div class="bg-white p-6 rounded-lg w-full max-w-md">
+            <span class="close cursor-pointer text-xl float-right">×</span>
+            <h2 class="text-xl font-semibold text-[#33545B] mb-4">Login</h2>
+            <input type="text" placeholder="Username" class="w-full p-2 mb-4 border rounded-lg focus:ring-2 focus:ring-[#33545B]">
+            <input type="password" placeholder="Password" class="w-full p-2 mb-4 border rounded-lg focus:ring-2 focus:ring-[#33545B]">
+            <button id="login-submit" class="w-full px-4 py-2 rounded-full bg-[#F9CE4E] hover:bg-[#e6b93d] text-[#333]">Login</button>
+        </div>
+    </div>
+
+    <div id="register-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+        <div class="bg-white p-6 rounded-lg w-full max-w-md">
+            <span class="close cursor-pointer text-xl float-right">×</span>
+            <h2 class="text-xl font-semibold text-[#33545B] mb-4">Register</h2>
+            <input type="text" placeholder="Username" class="w-full p-2 mb-4 border rounded-lg focus:ring-2 focus:ring-[#33545B]">
+            <input type="email" placeholder="Email" class="w-full p-2 mb-4 border rounded-lg focus:ring-2 focus:ring-[#33545B]">
+            <input type="password" placeholder="Password" class="w-full p-2 mb-4 border rounded-lg focus:ring-2 focus:ring-[#33545B]">
+            <button id="register-submit" class="w-full px-4 py-2 rounded-full bg-[#F9CE4E] hover:bg-[#e6b93d] text-[#333]">Register</button>
+        </div>
+    </div>
+
+    <footer class="mt-12">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <h3 class="text-lg font-semibold mb-4">JobQuest</h3>
+                <p class="text-sm">Connecting talent with opportunities since 2025.</p>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:underline">Home</a></li>
+                    <li><a href="#" id="footer-about" class="hover:underline">About Us</a></li>
+                    <li><a href="#" id="footer-contact" class="hover:underline">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-4">Resources</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:underline">Blog</a></li>
+                    <li><a href="#" class="hover:underline">FAQ</a></li>
+                    <li><a href="#" class="hover:underline">Terms</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-4">Follow Us</h3>
+                <div class="flex space-x-4">
+                    <a href="https://twitter.com" target="_blank" class="text-2xl hover:text-[#F9CE4E]"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com" target="_blank" class="text-2xl hover:text-[#F9CE4E]"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.facebook.com" target="_blank" class="text-2xl hover:text-[#F9CE4E]"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-4 text-center text-sm border-t pt-4">
+            © 2025 JobQuest. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
